@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه آنلاین من</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background: #f8f9fa; color: #333; line-height: 1.6; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem 1rem; text-align: center; }
+        .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .nav { background: #2c3e50; padding: 1rem; text-align: center; }
+        .nav a { color: white; text-decoration: none; margin: 0 1rem; padding: 0.5rem 1rem; border-radius: 5px; }
+        .nav a:hover { background: #3498db; }
+        .cart-info { background: #e74c3c; color: white; padding: 1rem; text-align: center; position: sticky; top: 0; font-weight: bold; }
+        .products { padding: 2rem; display: grid; gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .product { background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+        .product:hover { transform: translateY(-5px); }
+        .product-img { width: 100%; height: 150px; background: #f0f0f0; border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+        .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; color: #2c3e50; }
+        .product-price { font-size: 1.1rem; color: #e74c3c; font-weight: bold; margin-bottom: 1rem; }
+        .add-to-cart { background: #3498db; color: white; border: none; padding: 0.8rem 2rem; border-radius: 25px; cursor: pointer; width: 100%; }
+        .add-to-cart:hover { background: #2980b9; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 3rem; }
+        @media (min-width: 768px) { .products { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .products { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+    <div class="cart-info">🛒 سبد خرید: <span id="cart-count">0</span> محصول - 📞 تماس: ۰۹۱۲XXX‌XXXX</div>
+    <div class="header"><h1>🛍️ فروشگاه آنلاین من</h1><p>بهترین محصولات با بهترین قیمت</p></div>
+    <div class="nav"><a href="#home">خانه</a><a href="#products">محصولات</a><a href="#about">درباره ما</a><a href="#contact">تماس با ما</a></div>
+    <div class="products" id="products-container"></div>
+    <div class="footer"><h3>📞 راه‌های ارتباطی</h3><p>🟢 واتساپ: ۰۹۱۲XXX‌XXXX</p><p>📧 ایمیل: info@myshop.com</p><p>© ۲۰۲۴ - فروشگاه آنلاین من</p></div>
+    <script>
+        const products = [
+            {id: 1, name: "گوشی موبایل سامسونگ", price: "۵,۲۰۰,۰۰۰ تومان", emoji: "📱", description: "مدل A32 - حافظه 128GB"},
+            {id: 2, name: "لپ تاپ ایسوس", price: "۲۵,۰۰۰,۰۰۰ تومان", emoji: "💻", description: "Core i7 - RAM 16GB"},
+            {id: 3, name: "هدفون حرفه‌ای", price: "۱,۵۰۰,۰۰۰ تومان", emoji: "🎧", description: "مدل Sony WH-1000XM4"},
+            {id: 4, name: "ماوس گیمینگ", price: "۸۰۰,۰۰۰ تومان", emoji: "🖱️", description: "RGB - 16000 DPI"}
+        ];
+        let cartCount = 0;
+        function displayProducts() {
+            const container = document.getElementById('products-container');
+            products.forEach(product => {
+                container.innerHTML += `<div class="product"><div class="product-img">${product.emoji}</div><h3 class="product-title">${product.name}</h3><p style="color: #666; margin-bottom: 0.5rem; font-size: 0.9rem;">${product.description}</p><p class="product-price">${product.price}</p><button class="add-to-cart" onclick="addToCart(${product.id})">🛒 افزودن به سبد خرید</button></div>`;
+            });
+        }
+        function addToCart(productId) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+            const button = event.target;
+            button.innerHTML = '✅ افزوده شد!';
+            button.style.background = '#27ae60';
+            setTimeout(() => {
+                button.innerHTML = '🛒 افزودن به سبد خرید';
+                button.style.background = '#3498db';
+            }, 2000);
+        }
+        document.addEventListener('DOMContentLoaded', displayProducts);
+    </script>
+</body>
+                                                                               </html>
